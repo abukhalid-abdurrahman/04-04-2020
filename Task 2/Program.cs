@@ -95,7 +95,7 @@ namespace Task_2
             empl.EmployeePosition = Employee.Positions.Supervisor;
             empl.Experience = 7;
             empl.CalculateSalary();
-            Console.WriteLine($"{empl.Name} {empl.Surname}: \n" + 
+            Console.WriteLine($"Сотрудник: {empl.Name} {empl.Surname}: \n" + 
             $"Стаж: { empl.Experience }\n" + 
             $"Должность: { empl.PositionsToString() }\n" + 
             $"Зарплата(Без выдачи): { empl.Salary }\n" +
