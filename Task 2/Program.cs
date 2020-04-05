@@ -40,6 +40,10 @@ namespace Task_2
         ///Процент для налоговой
         ///</summary>
         public double Tax { get; set; }
+        ///<summary>
+        ///Зарплата
+        ///</summary>
+        public double Salary { get; set; }
         public Employee(string _name, string _surname)
         {
             Name = _name;
@@ -56,10 +60,13 @@ namespace Task_2
             else if(Experience > 15)
                 results += 2200;
 
-            results += (int)EmployeePosition;
-            results -= ((results * 13) / 100); // 13% - Налог
-            results -= (results / 100); // 1% - Пенсионый фонд
+            Salary = (int)EmployeePosition;
+            Pension = ((results * 13) / 100); // 13% - Налог
+            Tax = (results / 100); // 1% - Пенсионый фонд
             
+            results += Salary;
+            results -= (Pension + Tax);
+
             return results;
         }
 
@@ -84,9 +91,12 @@ namespace Task_2
             empl.Experience = 7;
             empl.CalculateSalary();
             Console.WriteLine($"{empl.Name} {empl.Surname}: \n" + 
-            $"Стаж: {empl.Experience}\n" + 
-            $"Должность: {empl.PositionsToString()}\nЗарплата(Без выдачи): { empl.EmployeePosition }\nПенсионый фонд: { empl.Pension }\nНалог: { empl.Tax }\n" +
-            $"Зарплата(к выдаче): { empl.CalculateSalary() }");
+            $"Стаж: { empl.Experience }\n" + 
+            $"Должность: { empl.PositionsToString() }\n" + 
+            $"Зарплата(Без выдачи): { empl.EmployeePosition }\n" +
+            $"Пенсионый фонд: { empl.Pension }\n" + 
+            $"Налог: { empl.Tax }\n" +
+            $"Зарплата(К выдаче): { empl.Salary }");
         }
     }
 }
