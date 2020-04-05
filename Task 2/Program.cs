@@ -7,6 +7,10 @@ using System;
 
 namespace Task_2
 {
+    class Employee
+    {
+        
+    }
     class Program
     {
         static void Main(string[] args)
