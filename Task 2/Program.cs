@@ -25,13 +25,9 @@ namespace Task_2
         ///</summary>
         public string Surname { get; set; }
         ///<summary>
-        ///Должность сотрудника
+        ///Должность и зар-плата сотрудника
         ///</summary>
         public Positions EmployeePosition { get; set; }
-        ///<summary>
-        ///Зар-плата сотрудника
-        ///</summary>
-        public string Salary { get; set; }
         ///<summary>
         ///Стаж работы сотрудника
         ///</summary>
@@ -45,13 +41,17 @@ namespace Task_2
         public double CalculateSalary()
         {
             double results = 0.0f;
-            if(Experience > 5)
+            if(Experience > 5) //+ к зарплате от стажа работы
                 results += 300;
             else if(Experience > 10)
                 results += 600;
             else if(Experience > 15)
                 results += 2200;
 
+            results += (int)EmployeePosition;
+            results -= ((results * 13) / 100); // 13% - Налог
+            results -= (results / 100); // 1% - Пенсионый фонд
+            
             return results;
         }
     }
