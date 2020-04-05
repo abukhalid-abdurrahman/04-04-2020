@@ -41,9 +41,13 @@ namespace Task_2
         ///</summary>
         public double Tax { get; set; }
         ///<summary>
-        ///Зарплата
+        ///Зарплата(К выдаче)
         ///</summary>
-        public double Salary { get; set; }
+        public double SalaryReady { get; set; }
+        ///<summary>
+        ///Зарплата(Без выдачи)
+        ///</summary>
+        public double Salary{ get; set; }
         public Employee(string _name, string _surname)
         {
             Name = _name;
@@ -61,13 +65,14 @@ namespace Task_2
                 results += 2200;
 
             Salary = (int)EmployeePosition;
+            results += Salary;
             Pension = ((results * 13) / 100); // 13% - Налог
             Tax = (results / 100); // 1% - Пенсионый фонд
             
-            results += Salary;
             results -= (Pension + Tax);
+            SalaryReady = results;
 
-            return results;
+            return SalaryReady;
         }
 
         public string PositionsToString()
@@ -93,10 +98,10 @@ namespace Task_2
             Console.WriteLine($"{empl.Name} {empl.Surname}: \n" + 
             $"Стаж: { empl.Experience }\n" + 
             $"Должность: { empl.PositionsToString() }\n" + 
-            $"Зарплата(Без выдачи): { empl.EmployeePosition }\n" +
+            $"Зарплата(Без выдачи): { empl.Salary }\n" +
             $"Пенсионый фонд: { empl.Pension }\n" + 
             $"Налог: { empl.Tax }\n" +
-            $"Зарплата(К выдаче): { empl.Salary }");
+            $"Зарплата(К выдаче): { empl.SalaryReady }");
         }
     }
 }
