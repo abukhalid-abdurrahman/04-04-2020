@@ -67,25 +67,25 @@ namespace Task_1
         }
         static void Main(string[] args)
         {
-            string menu = "1 - Convert TJS To (EUR, USD, RUB)\n" + 
-                          "2 - Convert (EUR, USD, RUB) To TJS\n" + 
-                          "exit - To Exit";
+            string menu = "Меню:\n1 - Конвертация Таджитского сомони в (EUR, USD, RUB)\n" + 
+                          "2 - Конвертация (EUR, USD, RUB) в Таджитский сомони\n" + 
+                          "выход - Закрыть программу";
             Converter convert = new Converter(10.22, 11.04, 0.13);
             convert.tjsCourseEUR = 0.091;
             convert.tjsCourseUSD = 0.098;
             convert.tjsCourseRUB = 7.48;
             Console.WriteLine(menu);
             string _cmd = String.Empty;
-            while(_cmd != "exit")
+            while(_cmd != "выход")
             {
                _cmd = Console.ReadLine();
                switch (_cmd)
                {
                    case "1":
                    {
-                        Console.WriteLine("Таджитский Сомони в (EUR, USD, RUB): ");
+                        Console.WriteLine("Таджитский Сомони в (введите одну из приведённых валют: EUR, USD, RUB): ");
                         string curStr = Console.ReadLine().ToUpper();
-                        Console.WriteLine("Сомони: ");
+                        Console.WriteLine("Введите сомони: ");
                         double _tjsManey = ReadDouble();
                         if(curStr == "EUR")
                             Console.WriteLine($"{_tjsManey} сомони в {curStr} = " + convert.ConvertTJSTo(_tjsManey, Converter.Сurrency.EUR));
@@ -98,9 +98,9 @@ namespace Task_1
                    break;
                    case "2":
                    {
-                        Console.WriteLine("(EUR, USD, RUB) в Таджитских Сомони: ");
+                        Console.WriteLine("(Введите одну из приведённых валют: EUR, USD, RUB) в Таджитских Сомони: ");
                         string curStr = Console.ReadLine().ToUpper();
-                        Console.WriteLine("Деньги: ");
+                        Console.WriteLine("Введите деньги: ");
                         double _maneyManey = ReadDouble();
                         if(curStr == "EUR")
                             Console.WriteLine($"{_maneyManey} {curStr} в сомони = " + convert.ConvertToTJS(_maneyManey, Converter.Сurrency.EUR));
@@ -110,9 +110,6 @@ namespace Task_1
                             Console.WriteLine($"{_maneyManey} {curStr} в сомони = " + convert.ConvertToTJS(_maneyManey, Converter.Сurrency.RUB));
                         Console.WriteLine(menu);
                    }
-                   break;
-                   default:
-                   Console.WriteLine("Нет такой команды!");
                    break;
                }
             }
