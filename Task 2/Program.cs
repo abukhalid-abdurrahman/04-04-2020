@@ -32,6 +32,14 @@ namespace Task_2
         ///Стаж работы сотрудника
         ///</summary>
         public int Experience { get; set; }
+        ///<summary>
+        ///Процент для пенсионого фонда
+        ///</summary>
+        public double Pension { get; set; }
+        ///<summary>
+        ///Процент для налоговой
+        ///</summary>
+        public double Tax { get; set; }
         public Employee(string _name, string _surname)
         {
             Name = _name;
@@ -54,12 +62,31 @@ namespace Task_2
             
             return results;
         }
+
+        public string PositionsToString()
+        {
+            if(EmployeePosition == Positions.Supervisor)
+                return "Руководитель";
+            else if(EmployeePosition == Positions.Programmer)
+                return "Программист";
+            else if(EmployeePosition == Positions.Manager)
+                return "Менеджер";
+            else
+                return "Уборщик";
+        }
     }
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Employee empl = new Employee("Faridun", "Berdiev");
+            empl.EmployeePosition = Employee.Positions.Supervisor;
+            empl.Experience = 7;
+            empl.CalculateSalary();
+            Console.WriteLine($"{empl.Name} {empl.Surname}: \n" + 
+            $"Стаж: {empl.Experience}\n" + 
+            $"Должность: {empl.PositionsToString()}\nЗарплата(Без выдачи): { empl.EmployeePosition }\nПенсионый фонд: { empl.Pension }\nНалог: { empl.Tax }\n" +
+            $"Зарплата(к выдаче): { empl.CalculateSalary() }");
         }
     }
 }
